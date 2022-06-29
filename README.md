@@ -8,7 +8,11 @@ To help complete this project I will be using the Python package Pandas as well 
 
 ## Background
 
-I was watching the New York Mets broadcast when they played a clip from an interview with 2B/OF Jeff McNeil where they discussed his strong start to the 2022 season. [Here is the clip](https://youtu.be/bdelnn9rQT8?t=52) In this interview Jeff credited a change in his approach at the plate to his early success. He states that over the last two seasons he was only trying to hit the ball hard, while this year he is simply "hitting it where they're not". This made me question: Is hitting the ball hard statistcally more valuable? What is the measureable relationship between hitting the ball hard and total player value? How does hitting the ball hard stack up when compared to more traditional baseball stats?
+I was watching the New York Mets broadcast when they played a clip from an interview with 2B/OF Jeff McNeil where they discussed his strong start to the 2022 season. [Here is the clip](https://youtu.be/bdelnn9rQT8?t=52) 
+
+In this interview Jeff credited a change in his approach at the plate to his early success. He states that over the last two seasons he was only trying to hit the ball hard, while this year he is simply "hitting it where they're not". 
+
+This made me question: Is hitting the ball hard statistcally more valuable? What is the measureable relationship between hitting the ball hard and total player value? How does hitting the ball hard stack up when compared to more traditional baseball stats?
 
 ## The Categories
 
@@ -46,5 +50,16 @@ If you would like a more complete explanation on how WAR is calculated you can c
 
 ## The Data
 
-The data I will be using will be from the 2021 MLB season which I downloaded in CSV format from baseball-reference [here](https://www.baseball-reference.com/leagues/majors/2021-standard-batting.shtml). 
+The data I will be using will be from the 2021 MLB season which I downloaded in CSV format from baseball-reference [here](https://www.baseball-reference.com/leagues/majors/2021-standard-batting.shtml). The data needed was taken from the standard batting, advanced batting, and value batting tables. These tables were then combined into one dataset. I then cleaned the dataset by removing unwanted columns, duplicates, and batters with less than 100 Plate Appearances. This took the dataset from 1167 batters to 258.
 
+The data was split into a train and test dataset (70/30 split). WAR was dropped from the test data so that the model based on the train data could be applied to predict WAR.
+
+## Exploratory Data Analysis
+
+### Examining WAR Distribution
+
+Baseball Reference has a key that claims the following levels of player value for WAR: 8+ MVP, 5+ All Star, 2+ Starting player, 0-2 Bench Player, <0 Replacement Level.
+
+When examining the WAR distribution I found most of the data to be in the range of 0-2.6 WAR. This is unsurprising as the metric itself is a measurement of a player compared to replacement and league average players. 25% of the players in the dataset have a value above 2.6 WAR which would roughly fill out two All-Star teams and align with the Baseball Reference guidelines.
+
+![WAR Box Plot](images/WAR_box_and_whisker.png)
